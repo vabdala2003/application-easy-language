@@ -1,4 +1,9 @@
+import sys
 import logging
+
+from PySide6.QtWidgets import QApplication
+
+from app.ui.initial_screen import InitialScreen
 from app.config.configure_logging import configure_logging
 from app.core.custom_exceptions import EasyLanguageException
 
@@ -11,27 +16,29 @@ def safe_logging_setup():
     configure_logging()
     return logging.getLogger(__name__)
 
-def initialize_app():
-    """
-    Initializes the application.
-    """
-    pass
 
 def main():
     try:
         logger = safe_logging_setup()
         logger.info("Starting the application")
 
-        initialize_app()
+        app = QApplication(sys.argv)
+
+        initial_screen = InitialScreen()
+        initial_screen.show()
+
+        exit_code = app.exec()
 
         logger.info("Application terminated successfully")
 
+        sys.exit(exit_code)
+
     except EasyLanguageException as e:
-        logging.error(f"An EasyLanguage error occurred: {e}")
+        logging.error(f"Application terminated with an EasyLanguage error: {e}")
         raise
 
     except Exception as e:
-        logging.error(f"An unknown error occurred: {e}")
+        logging.error(f"Application terminated with an unknown error: {e}")
         raise
 
 
