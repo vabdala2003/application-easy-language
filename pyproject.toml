@@ -1,0 +1,19 @@
+[project]
+name = "easy-language"
+version = "0.1.0"
+description = "Learn new languages with Easy Language"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "numpy>=2.5.1",
+    "openai>=2.52.0",
+    "pandas>=3.0.5",
+    "pyside6>=6.11.1",
+    "python-json-logger>=4.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=26.5.1",
+    "isort>=8.0.1",
+]
