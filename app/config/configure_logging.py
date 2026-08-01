@@ -1,7 +1,8 @@
-
 import logging
-from pythonjsonlogger.json import JsonFormatter
 from pathlib import Path
+
+from pythonjsonlogger.json import JsonFormatter
+
 from app.core.custom_exceptions import ConfigurationException
 
 
@@ -26,10 +27,10 @@ def configure_logging(file: bool = True):
         handlers.append(stream_handler)
 
         if file:
-            logs_path = Path('app', 'logs')
+            logs_path = Path("app", "logs")
             logs_path.mkdir(parents=True, exist_ok=True)
 
-            file_handler = logging.FileHandler(logs_path / 'app.log')
+            file_handler = logging.FileHandler(logs_path / "app.log")
             file_handler.setFormatter(
                 JsonFormatter(
                     " ".join(get_format_elements()),
@@ -42,11 +43,12 @@ def configure_logging(file: bool = True):
             level=logging.DEBUG,
             handlers=handlers,
             datefmt="%Y-%m-%d %H:%M:%S",
-            force=True
+            force=True,
         )
 
     except Exception as e:
         raise ConfigurationException(f"Failed to configure logging: {e}") from e
+
 
 def get_format_elements():
     format_elements = [
@@ -54,6 +56,6 @@ def get_format_elements():
         "%(levelname)s",
         "%(funcName)s",
         "%(module)s",
-        "%(message)s"
+        "%(message)s",
     ]
     return format_elements

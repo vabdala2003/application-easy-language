@@ -100,3 +100,6 @@ desktop.ini
 # Qt / PySide
 *.qm
 *.ts.user
+
+# Test notebooks
+*.ipynb

@@ -1,11 +1,11 @@
-import sys
 import logging
+import sys
 
 from PySide6.QtWidgets import QApplication
 
-from app.ui.initial_screen import InitialScreen
 from app.config.configure_logging import configure_logging
 from app.core.custom_exceptions import EasyLanguageException
+from app.ui.main_screen import MainScreen
 
 
 def safe_logging_setup():
@@ -24,7 +24,7 @@ def main():
 
         app = QApplication(sys.argv)
 
-        initial_screen = InitialScreen()
+        initial_screen = MainScreen()
         initial_screen.show()
 
         exit_code = app.exec()
